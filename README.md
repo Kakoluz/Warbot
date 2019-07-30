@@ -1,6 +1,5 @@
-#<div style="text-align: center">Warbot</div>
-
-#####After this trend of Warbots I decided to make a open bot for anyone to use
+#Warbot
+####After this trend of Warbots I decided to make a open bot for anyone to use
 
   * * *
   * **Features**
