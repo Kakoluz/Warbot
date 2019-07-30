@@ -237,7 +237,7 @@ Participant& Controller::doRound()
         {
             std::cout << std::endl <<  first.getName() << " (" << first.getAlias() << ") has been killed by " << second.getName() << " (" << second.getAlias() << ")\n\n";
             removeMember(first.getAlias());
-            second.killUp();
+            _participants.find(djb2(second.getAlias()))->second.killUp();
             ++round;
             return second;
         }
@@ -245,7 +245,7 @@ Participant& Controller::doRound()
         {
             std::cout << std::endl << second.getName() << " (" << second.getAlias() << ") has been killed by " << first.getName() << " (" << first.getAlias() << ")\n\n";
             removeMember(second.getAlias());
-            first.killUp();
+            _participants.find(djb2(first.getAlias()))->second.killUp();
             ++round;
             return first;
         }
