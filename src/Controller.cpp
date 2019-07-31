@@ -235,7 +235,7 @@ Participant& Controller::doRound()
         }
         if (dice1 < dice2)
         {
-            std::cout << std::endl <<  first.getName() << " (" << first.getAlias() << ") has been killed by " << second.getName() << " (" << second.getAlias() << ")\n\n";
+            std::cout << std::endl <<  first.getName() << "(" << first.getAlias() << ") has been killed by " << second.getName() << "(" << second.getAlias() << ")\n\n";
             removeMember(first.getAlias());
             _participants.find(djb2(second.getAlias()))->second.killUp();
             ++round;
@@ -243,7 +243,7 @@ Participant& Controller::doRound()
         }
         else
         {
-            std::cout << std::endl << second.getName() << " (" << second.getAlias() << ") has been killed by " << first.getName() << " (" << first.getAlias() << ")\n\n";
+            std::cout << std::endl << second.getName() << "(" << second.getAlias() << ") has been killed by " << first.getName() << "(" << first.getAlias() << ")\n\n";
             removeMember(second.getAlias());
             _participants.find(djb2(first.getAlias()))->second.killUp();
             ++round;

@@ -18,9 +18,22 @@ std::string timeToString()
 std::string nextBattle(int time, std::time_t timeNow)
 {
     std::tm* now = std::localtime(&timeNow);
-    int hour = now->tm_hour + (time - (time % 60));
-    int minute = now->tm_min + (time % 59);
+    int hour = now->tm_hour + (time - (time % 60)) % 23;
+    int minute = now->tm_min + (time % 59) % 59;
     std::stringstream returnString;
+    if (hour < 10)
+        returnString << "0" << hour << ":" << minute;
+    else if (minute < 10)
+    {
+        returnString.clear();
+        returnString << hour << "0" << minute;
+    }
+    else if (hour < 100 && minute < 10)
+    {
+        returnString.clear();
+        returnString << "0" << hour << "0" << minute;
+    }
+    else 
     returnString << hour << ":" << minute;
     return returnString.str();
 }

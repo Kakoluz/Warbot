@@ -23,7 +23,7 @@
   
   **Instructions:**
   - Get the bot:
-      - Get the **Main.exe** from bin/ folder and run it
+      - Get the **Warbot.exe** from bin/ folder and run it
       - Get the project and run the **Build.bat** to build it by yourself
   - Follow the guide inside the program.
   - Teams should have atleast 1 member at start.
