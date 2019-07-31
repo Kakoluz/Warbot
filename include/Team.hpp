@@ -13,8 +13,8 @@ public:
     void changeName(const std::string name);
     void addMember(Participant& member);
     void removeMember(Participant& member);
-    std::string getName();
-    int size();
+    const std::string getName();
+    const int size();
     bool operator==(const Team& other);
     ~Team();
 };

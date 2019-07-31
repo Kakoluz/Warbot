@@ -2,7 +2,13 @@
 
 //Private/Auxiliary functions
 
-int Controller::getRandKey() 
+/**
+ * Short: iterates a random number of times in the participant hash table to get the key of a random one.
+ * Return: a random key on the hash table.
+ */
+
+
+const int Controller::getRandKey() 
 {
     auto it = _participants.begin();
     std::random_device generator;
@@ -14,7 +20,13 @@ int Controller::getRandKey()
     return it->first;
 }
 
-int Controller::djb2(const std::string& string)
+/**
+ * Short: hashing algorithm for the data structures, calculates the key of an item from a string.
+ * Return: the calculated key.
+ */
+
+
+const int Controller::djb2(const std::string& string)
 {
     unsigned long hash = 5381;
     for (const auto character : string) {
@@ -23,22 +35,38 @@ int Controller::djb2(const std::string& string)
     return hash;
 }
 
-float Controller::diceRoll(Participant& Participant)
+/**
+ * Short: calculates the player roll and adds the number of kills this player did.
+ * Return: the value of this player for this round.
+ * Note: returns a float just in case of changing the formula (Planned to do).
+ */
+
+const float Controller::diceRoll(Participant& Participant)
 {
-    return (rand() + ((Participant.getKills() + 1) * round)) % 256;
+    return (rand() + ((Participant.getKills() + 1) * _round)) % 256;
 }
 
 //Public functions
 
-Controller::Controller(bool mode) : teamMode(mode), round(1)
+/**
+ * Args: bool mode, if true, the controller will work in team mode.
+ * Return: a new controller with given mode.
+ */
+
+Controller::Controller(bool mode) : _teamMode(mode), _round(1)
 {
     _participants = std::map<int, Participant>();
     _teams = std::map<int, Team>();
 }
 
-bool Controller::checkWin()
+/**
+ * Short: Checks if the war is over, by checking the number of participants or teams.
+ * Return: if the war is over or not.
+ */
+
+const bool Controller::checkWin()
 {
-    if (teamMode)
+    if (_teamMode)
     {
         if (_teams.size() == 1)
             return true;
@@ -51,15 +79,33 @@ bool Controller::checkWin()
     return false;
 }
 
+/**
+ * Short: returns the only team alive
+ * Return: the winner team
+ * Note: this fuction returns the first team, use it only while being sure it is the only team
+ */
+
 Team& Controller::winnerTeam()
 {
     return _teams.begin()->second;
 }
 
+/**
+ * Short: returns the participant team alive
+ * Returns: the winner
+ * Note: this fuction returns the first participant, use it only while being sure it is the only one
+ */
+
 Participant& Controller::winner()
 {
     return _participants.begin()->second;
 }
+
+/**
+ * Short: adds a new team to the war
+ * Args: string teamName, name of the team to add
+ * Note: this fuction is mainly to debug, the version below is more user-friendly.
+ */
 
 void Controller::newTeam(std::string teamName) 
 {
@@ -70,6 +116,10 @@ void Controller::newTeam(std::string teamName)
     else
         _teams.emplace(djb2(teamName),Team(teamName));
 }
+
+/**
+ * Short: adds a new team to the war asking for the data needed.
+ */
 
 void Controller::newTeam()
 {
@@ -97,10 +147,15 @@ void Controller::newTeam()
     } 
 }
 
+/**
+ * Short: adds a new member to the war, if its a non team based war it will create its onw team.
+ * Args: string teamName, name of the team to add this new member to, if its not team-based, just use anything.
+ */
+
 void Controller::newMember(std::string teamName)
 {
     bool validTeam = true;
-    if (teamMode)
+    if (_teamMode)
     {
         validTeam = false;
         if (_teams.find(djb2(teamName)) != _teams.end())
@@ -151,13 +206,21 @@ void Controller::newMember(std::string teamName)
     }   
 }
 
+/**
+ * Short: adds a new member to the war, if its a non team based war it will create its onw team.
+ * Args: string teamName, name of the team to add this new member.
+ *       string name, name of the new member.
+ *       string alias, alias of the new member.
+ * Note: use the version above, this is for debugging.
+ */
+
 void Controller::newMember(std::string teamName, std::string name, std::string alias)
 {
     if (_participants.find(djb2(alias)) != _participants.end())
     {
         std::cout << "\nError: Alias already in use\n\n";
     }
-    else if (teamMode)
+    else if (_teamMode)
     {
         _participants.emplace(djb2(alias),Participant(name, alias, _teams.find(djb2(teamName))->second));
         _teams.find(djb2(teamName))->second.addMember(_participants.find(djb2(alias))->second);
@@ -165,12 +228,18 @@ void Controller::newMember(std::string teamName, std::string name, std::string a
     }
     else
     {
-        newTeam(std::to_string(StandAloneTeams));
-        _participants.emplace(djb2(alias),Participant(name, alias, _teams.find(djb2(std::to_string(StandAloneTeams)))->second));
+        newTeam(std::to_string(_standAloneTeams));
+        _participants.emplace(djb2(alias),Participant(name, alias, _teams.find(djb2(std::to_string(_standAloneTeams)))->second));
         std::cout << "Member " << name << " has been successfully added\n";
-        ++StandAloneTeams;
+        ++_standAloneTeams;
     }
 }
+
+/**
+ * Short: removes a member from all the data structures used.
+ * Args: string alias, alias of the member to remove.
+ * Note: this fuction is used to remove a dead participant.
+ */
 
 void Controller::removeMember(std::string alias)
 {
@@ -189,6 +258,12 @@ void Controller::removeMember(std::string alias)
     }   
 }
 
+/**
+ * Short: removes the team from all the data structures used.
+ * Args: string teamName, name of the team to remove.
+ * Note: this fuction is used to remove a defeated team.
+ */
+
 void Controller::removeTeam(std::string teamName)
 {
     auto it = _teams.find(djb2(teamName));
@@ -202,15 +277,30 @@ void Controller::removeTeam(std::string teamName)
     }
 }
 
-int Controller::teamsAlive()
+/**
+ * Return: the number of teams with members.
+ */
+
+const int Controller::teamsAlive()
 {
     return _teams.size();
 }
 
-int Controller::playersAlive()
+/**
+ * Return: the number of participants alive.
+ */
+
+
+const int Controller::playersAlive()
 {
     return _participants.size();
 }
+
+/**
+ * Short: does a round of the war, removing players from the data structures.
+ * Return: the player that survived.
+ * Note: this is the main fuction of the controller, call it to do a battle.
+ */
 
 Participant& Controller::doRound()
 {
@@ -238,7 +328,7 @@ Participant& Controller::doRound()
             std::cout << std::endl <<  first.getName() << "(" << first.getAlias() << ") has been killed by " << second.getName() << "(" << second.getAlias() << ")\n\n";
             removeMember(first.getAlias());
             _participants.find(djb2(second.getAlias()))->second.killUp();
-            ++round;
+            ++_round;
             return second;
         }
         else
@@ -246,10 +336,14 @@ Participant& Controller::doRound()
             std::cout << std::endl << second.getName() << "(" << second.getAlias() << ") has been killed by " << first.getName() << "(" << first.getAlias() << ")\n\n";
             removeMember(second.getAlias());
             _participants.find(djb2(first.getAlias()))->second.killUp();
-            ++round;
+            ++_round;
             return first;
         }
     }
 }
+
+/**
+ * Short: the destructor doesn't need to do anything special, so the default one works just fine.
+ */
 
 Controller::~Controller() { };

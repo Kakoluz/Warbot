@@ -10,17 +10,18 @@
 class Controller
 {
 private:
-    int getRandKey();
-    int djb2(const std::string& s);
-    float diceRoll(Participant& participant);
     std::map<int, Participant> _participants;
     std::map<int, Team> _teams;
-    bool teamMode;
-    int round;
-    int StandAloneTeams;
+    bool _teamMode;
+    unsigned int _round;
+    unsigned int _standAloneTeams;
+
+    const int getRandKey();
+    const int djb2(const std::string& s);
+    const float diceRoll(Participant& participant);
 public:
     Controller(bool mode);
-    bool checkWin();
+    const bool checkWin();
     Team& winnerTeam();
     Participant& winner();
     void newTeam();
@@ -29,8 +30,8 @@ public:
     void newMember(std::string teamName, std::string name, std::string alias);
     void removeMember(std::string alias);
     void removeTeam(std::string teamName);
-    int teamsAlive();
-    int playersAlive();
+    const int teamsAlive();
+    const int playersAlive();
     Participant& doRound();
     ~Controller();
 };

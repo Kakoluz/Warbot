@@ -8,7 +8,7 @@ private:
     std::string _name;
     std::string _alias;
     Team* _team;
-    int killCount;
+    unsigned int _killCount;
 public:
     Participant(const std::string name, const std::string alias);
     Participant(const std::string name, const std::string alias, Team& team);
@@ -20,7 +20,7 @@ public:
     std::string getAlias();
     Team& getTeam();
     void killUp();
-    int getKills();
+    const unsigned int getKills();
     bool operator==(const Participant& other);
     ~Participant();
 };

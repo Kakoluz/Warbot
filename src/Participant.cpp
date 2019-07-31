@@ -1,7 +1,7 @@
 #include "Participant.hpp"
 
-Participant::Participant(const std::string name, const std::string alias) : _name(name), _alias(alias), killCount(0) { }
-Participant::Participant(const std::string name, const std::string alias, Team& team) : _name(name), _alias(alias), _team(&team), killCount(0) { }
+Participant::Participant(const std::string name, const std::string alias) : _name(name), _alias(alias), _killCount(0) { }
+Participant::Participant(const std::string name, const std::string alias, Team& team) : _name(name), _alias(alias), _team(&team), _killCount(0) { }
 Participant::Participant(std::nullptr_t null) : _alias(nullptr) {}
 std::string Participant::getName()
 {
@@ -29,17 +29,16 @@ void Participant::setTeam (Team& team)
 }
 void Participant::killUp()
 {
-    ++killCount;
+    ++_killCount;
 }
-int Participant::getKills()
+const unsigned int Participant::getKills()
 {
-    return killCount;
+    return _killCount;
 }
 bool Participant::operator==(const Participant& other)
 {
     if (_alias == other._alias)
         return true;
-    else
-        return false;
+    return false;
 }
 Participant::~Participant() { }

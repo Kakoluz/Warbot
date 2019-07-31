@@ -8,7 +8,7 @@ void Team::changeName(const std::string name)
 {
     _name = name;
 }
-std::string Team::getName() 
+const std::string Team::getName() 
 {
     return _name;    
 }
@@ -31,7 +31,7 @@ void Team::removeMember(Participant& member)
             _members.remove(it);
     }
 }
-int Team::size()
+const int Team::size()
 {
     return _members.size();
 }

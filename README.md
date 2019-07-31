@@ -13,10 +13,11 @@
 * * *
 * **TODO**
   * _Twitter integration_, add the twiter API to report directly through twitter.
+  * _Better roll_, create a new random fuction to get the bot more precise and compesate for kills in a more just manner.
   * _Persistence_, in case of crash, power outage or any other reason to lose progress.
   * _More settings_, Read settings from a text file and more customizations, like team sizes and friend fire.
   * _MultiPlatform_, add releases for Linux and MacOS.
-  * _Exceptions_, Errors are processsed through loops and standar outputs, add exceptions to process errors more easily.
+  * _Exceptions_, Errors are processsed through loops and standard outputs, add exceptions to process errors more easily.
   * _Releases_, Add donwloads in the release tab of this repo.
   
   * * *
