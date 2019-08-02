@@ -16,16 +16,14 @@
   * _Better roll_, create a new random fuction to get the bot more precise and compesate for kills in a more just manner.
   * _Persistence_, in case of crash, power outage or any other reason to lose progress.
   * _More settings_, Read settings from a text file and more customizations, like team sizes and friend fire.
-  * _MultiPlatform_, add releases for Linux and MacOS.
   * _Exceptions_, Errors are processsed through loops and standard outputs, add exceptions to process errors more easily.
-  * _Releases_, Add donwloads in the release tab of this repo.
   
   * * *
   
   **Instructions:**
   - Get the bot:
-      - Get the **Warbot.exe** from bin/ folder and run it
-      - Get the project and run the **Build.bat** to build it by yourself
+      - Windows: Get the **Warbot.exe** from out/build/x86/source folder and run it.
+      - Linux/MacOS: Get the project and run the **build.sh** to build it by yourself. (CMake needed)
+      - Get the executable from Releases tab
   - Follow the guide inside the program.
   - Teams should have atleast 1 member at start.
-  - Time between battles work best with longer periods, like 1 hour.
