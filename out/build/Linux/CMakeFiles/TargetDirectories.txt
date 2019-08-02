@@ -1,5 +1,0 @@
-/mnt/c/Users/alber/source/repos/WarbotCMake/out/build/Linux/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/alber/source/repos/WarbotCMake/out/build/Linux/CMakeFiles/edit_cache.dir
-/mnt/c/Users/alber/source/repos/WarbotCMake/out/build/Linux/source/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/alber/source/repos/WarbotCMake/out/build/Linux/source/CMakeFiles/Warbot.dir
-/mnt/c/Users/alber/source/repos/WarbotCMake/out/build/Linux/source/CMakeFiles/edit_cache.dir
