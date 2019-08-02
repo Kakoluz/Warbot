@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/Warbot.dir/src/main.cpp.o CMakeFiles/Warbot.dir/src/Participant.cpp.o CMakeFiles/Warbot.dir/src/Team.cpp.o CMakeFiles/Warbot.dir/src/Controller.cpp.o  -o Warbot 

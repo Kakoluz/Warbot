@@ -1,0 +1,7 @@
+# ninja log v5
+1	247	586453668	Warbot/CMakeFiles/Warbot.dir/build/windows/resource.rc.res	d528b2cb623f5beb
+8	389	586453668	Warbot/CMakeFiles/Warbot.dir/src/Participant.cpp.obj	cbb019fa44d74de2
+16	421	586453668	Warbot/CMakeFiles/Warbot.dir/src/Team.cpp.obj	443502638f7798bb
+4	980	586453669	Warbot/CMakeFiles/Warbot.dir/src/main.cpp.obj	214d19d337c4cd56
+12	1034	586453669	Warbot/CMakeFiles/Warbot.dir/src/Controller.cpp.obj	d18c9db8f835dbe5
+1034	1472	586453669	Warbot/Warbot.exe	2c6ed3d6fadf1d22
